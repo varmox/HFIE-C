@@ -5,14 +5,15 @@
 
 
 uint32_t histogramm[256];
+int maxSizeLetter = 0;
 
 int main()
 {
 	FILE* f = NULL;
 	_set_errno(0);
 	errno_t err = fopen_s(&f, "alice.txt", "r");
-	
-	
+
+
 
 	if (err != 0)
 	{
@@ -29,15 +30,20 @@ int main()
 		if (ch != EOF)
 		{
 			histogramm[ch]++;
+			if (histogramm[ch] > histogramm[maxSizeLetter])
+			{
+				maxSizeLetter = ch;
+			}
 		}
 
 	}
-	
-	
+
+
 	fclose(f);
 	uint16_t j = 0;
 	for (; j < 256; j++)
 	{
 		printf("vorkommen des Zeichens %c = %i\n", j, histogramm[j]);
 	}
+	printf("Grösste Anzahl von Buchstabe \'%c\' = %d\n", maxSizeLetter, histogramm[maxSizeLetter]);
 }
