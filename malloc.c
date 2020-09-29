@@ -17,6 +17,6 @@ int main (void) {
 	}
 	strcpy(name, "yannick");
 
-	
+	printf("My name: %s\n", name);
 
 }
